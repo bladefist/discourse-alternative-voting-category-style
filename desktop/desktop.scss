@@ -31,6 +31,10 @@
     .link-top-line {
       display: flex;
     }
+    
+    .link-bottom-line {
+      margin-left: 65px;
+    }
 
     .title.raw-link.raw-topic-link {
       display: block; // prevents wrapping on top of vote count
