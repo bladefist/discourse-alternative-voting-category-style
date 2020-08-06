@@ -46,15 +46,17 @@
           let currentCatSlug = topic.category.slug;
           $.each(voteCatSlugs, function(i, voteCatSlug) {
             if (voteCatSlug == currentCatSlug) {
-              let $voteCount = $(".category-" + voteCatSlug + " [data-topic-id=" + topic.id + "] .vote-count-before-title");
-              $voteCount.attr({
-                href: "/t/" + topic.id,
-                "data-user-voted": topic.user_voted
-              });
-              $voteCount.append('<span class="vote-count-value">' + topic.vote_count + '</span>');
-              if (topic.user_voted) {
-                $voteCount.attr("title", "You voted");
+              let $voteCount = $(".topic-list-item [data-topic-id=" + topic.id + "]");
+              let voteCount = document.querySelectorAll(".topic-list-item[data-topic-id='" + topic.id + "'] .vote-count-before-title")[0];
+              if (voteCount) {
+                  voteCount.href = "/t/" + topic.id;
+                  voteCount["data-user-voted"] = topic.user_voted;
+                  voteCount.innerHTML += '<span class="vote-count-value">' + topic.vote_count + '</span>';
+                  if (topic.user_voted) {
+                    voteCount.title = "You voted";
+                  }
               }
+              
               return false;
             }
           });
